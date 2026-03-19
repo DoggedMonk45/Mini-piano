@@ -6,3 +6,4 @@ public:
 	void tocarNota(float frecuencia);
 };
 #endif // !SINTETIZADOR_H
+//sxwbghgnbwg
