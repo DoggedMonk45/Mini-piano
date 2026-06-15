@@ -1,37 +1,39 @@
-#ifndef SR_KEYPAD_OSCILLATOR_H
-#define SR_KEYPAD_OSCILLATOR_H
+#ifndef MINI_PIANO_OSCILLATOR_H
+#define MINI_PIANO_OSCILLATOR_H
 
 #include <stdint.h>
 
 #include "../WaveTables/WaveTables.h"
 
-namespace SR_Keypad {
+namespace Mini_Piano {
+    namespace Audio {
 
-    class Oscillator {
-    private:
+        class Oscillator {
+        private:
 
-        uint32_t _phase;
-        uint32_t _step;
+            uint32_t _phase;
+            uint32_t _step;
 
-        float _frequency;
-        uint32_t _sampleRate;
+            float _frequency;
+            uint32_t _sampleRate;
 
-        const uint16_t* _waveTable;
+            const uint16_t* _waveTable;
 
-    public:
+        public:
 
-        Oscillator();
+            Oscillator();
 
-        void SetFrequency(float Frequency);
+            void SetFrequency(float Frequency);
 
-        void SetSampleRate(uint32_t SampleRate);
+            void SetSampleRate(uint32_t SampleRate);
 
-        void SetWave(SR_Audio::WaveType Type);
+            void SetWave(WaveType Type);
 
-        uint16_t GenerateSample();
+            uint16_t GenerateSample();
 
-    };
+        };
 
+    }
 }
 
 #endif

@@ -2,14 +2,14 @@
 
 #include <Wire.h>
 
-Hardware::DAC::DAC(uint8_t Address) {
+Mini_Piano::Hardware::DAC::DAC(uint8_t Address) {
 
     _address = Address;
 
     _sampleRate = 22050;
 }
 
-void Hardware::DAC::Begin(uint32_t SampleRate) {
+void Mini_Piano::Hardware::DAC::Begin(uint32_t SampleRate) {
 
     _sampleRate = SampleRate;
 
@@ -18,7 +18,7 @@ void Hardware::DAC::Begin(uint32_t SampleRate) {
     Wire.begin();
 }
 
-void Hardware::DAC::Write(uint16_t Value) {
+void Mini_Piano::Hardware::DAC::Write(uint16_t Value) {
 
     Value &= 0x0FFF;
 
@@ -33,7 +33,7 @@ void Hardware::DAC::Write(uint16_t Value) {
     Wire.endTransmission();
 }
 
-uint32_t Hardware::DAC::GetSampleRate() {
+uint32_t Mini_Piano::Hardware::DAC::GetSampleRate() {
 
     return _sampleRate;
 }

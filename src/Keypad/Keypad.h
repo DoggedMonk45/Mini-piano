@@ -1,51 +1,53 @@
-#ifndef SR_KEYPAD_CONTROLLER_H
-#define SR_KEYPAD_CONTROLLER_H
+#ifndef MINI_PIANO_KEYPAD_H
+#define MINI_PIANO_KEYPAD_H
 
 #include <stdint.h>
 
-#include "../SIPO/SIPO.h"
-#include "../PISO/PISO.h"
+#include "../../Hardware/SIPO/SIPO.h"
+#include "../../Hardware/PISO/PISO.h"
 
-namespace SR_Keypad {
+namespace Mini_Piano {
+    namespace Keypad {
 
-    class Controller {
-    public:
+        class Controller {
+        public:
 
-        enum StatusKeys : uint8_t {
-            Rising = 0b00,
-            Falling = 0b01,
-            IdleHigh = 0b10,
-            IdleLow = 0b11
+            enum StatusKeys : uint8_t {
+                Rising = 0b00,
+                Falling = 0b01,
+                IdleHigh = 0b10,
+                IdleLow = 0b11
+            };
+
+        private:
+
+            Hardware::SIPO* _out_controller;
+            Hardware::PISO* _in_controller;
+
+            uint8_t _prev_states[8];
+
+            void(*_Callback)(uint8_t ID, bool State);
+
+        public:
+
+            Controller();
+            Controller(void(&Callback)(uint8_t ID, bool State));
+
+            void AttachCallback(void(&Callback)(uint8_t ID, bool State));
+            void ClearCallback();
+
+            void AttachSIPO(Hardware::SIPO& SIPO_Controller);
+            void DettachSIPO();
+
+            void AttachPISO(Hardware::PISO& PISO_Controller);
+            void DettachPISO();
+
+
+            void Scan();
+
         };
 
-    private:
-
-        SIPO* _out_controller;
-        PISO* _in_controller;
-
-        uint8_t _prev_states[8];
-
-        void(*_Callback)(uint8_t ID, bool State);
-
-    public:
-
-        Controller();
-        Controller(void(&Callback)(uint8_t ID, bool State));
-
-        void AttachCallback(void(&Callback)(uint8_t ID, bool State));
-        void ClearCallback();
-
-        void AttachSIPO(SIPO& SIPO_Controller);
-        void DettachSIPO();
-
-        void AttachPISO(PISO& PISO_Controller);
-        void DettachPISO();
-
-
-        void Scan();
-
-    };
-
+    }
 }
 
-#endif//SR_KEYPAD_CONTROLLER_H
+#endif//MINI_PIANO_KEYPAD_H

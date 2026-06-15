@@ -1,20 +1,22 @@
-#ifndef SR_KEYPAD_WAVETABLES_H
-#define SR_KEYPAD_WAVETABLES_H
+#ifndef MINI_PIANO_WAVETABLES_H
+#define MINI_PIANO_WAVETABLES_H
 
 #include <stdint.h>
 
-namespace SR_Keypad {
+namespace Mini_Piano {
+    namespace Audio {
 
-    enum WaveType {
+        enum WaveType {
 
-        SINE,
-        SQUARE,
-        TRIANGLE,
-        SAW
-    };
+            SINE,
+            SQUARE,
+            TRIANGLE,
+            SAW
+        };
 
-    const uint16_t* GetWaveTable(WaveType Type);
+        const uint16_t* GetWaveTable(WaveType Type);
 
+    }
 }
 
 #endif

@@ -1,6 +1,6 @@
 #include "Keypad.h"
 
-SR_Keypad::Controller::Controller() {
+Mini_Piano::Keypad::Controller::Controller() {
     ClearCallback();
     DettachPISO();
     DettachSIPO();
@@ -10,7 +10,7 @@ SR_Keypad::Controller::Controller() {
     }
 }
 
-SR_Keypad::Controller::Controller(void(&Callback)(uint8_t ID, bool State)) {
+Mini_Piano::Keypad::Controller::Controller(void(&Callback)(uint8_t ID, bool State)) {
     AttachCallback(Callback);
     DettachPISO();
     DettachSIPO();
@@ -21,40 +21,36 @@ SR_Keypad::Controller::Controller(void(&Callback)(uint8_t ID, bool State)) {
 }
 
 
-void SR_Keypad::Controller::AttachCallback(void(&Callback)(uint8_t ID, bool State)) {
+void Mini_Piano::Keypad::Controller::AttachCallback(void(&Callback)(uint8_t ID, bool State)) {
     _Callback = Callback;
 }
 
-void SR_Keypad::Controller::ClearCallback() {
+void Mini_Piano::Keypad::Controller::ClearCallback() {
     _Callback = nullptr;
 }
 
-void SR_Keypad::Controller::AttachSIPO(SIPO& SIPO_Controller) {
+void Mini_Piano::Keypad::Controller::AttachSIPO(Hardware::SIPO& SIPO_Controller) {
     _out_controller = &SIPO_Controller;
 }
 
-void SR_Keypad::Controller::DettachSIPO() {
+void Mini_Piano::Keypad::Controller::DettachSIPO() {
     _out_controller = nullptr;
 }
 
-void SR_Keypad::Controller::AttachPISO(PISO& PISO_Controller) {
+void Mini_Piano::Keypad::Controller::AttachPISO(Hardware::PISO& PISO_Controller) {
     _in_controller = &PISO_Controller;
 }
 
-void SR_Keypad::Controller::DettachPISO() {
+void Mini_Piano::Keypad::Controller::DettachPISO() {
     _in_controller = nullptr;
 }
 
 
-void SR_Keypad::Controller::Scan() {
+void Mini_Piano::Keypad::Controller::Scan() {
 
-    if (!_out_controller | !_in_controller | !_Callback) {
-        return;
-    }
+    if (!_out_controller || !_in_controller || !_Callback) return;
 
-    uint8_t NewStates[8] = {
-        0,0,0,0,0,0,0,0
-    };
+    uint8_t NewStates[8] = { 0,0,0,0,0,0,0,0 };
 
     _out_controller->Data(0);
 

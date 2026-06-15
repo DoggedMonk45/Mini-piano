@@ -70,21 +70,19 @@ namespace {
            0.0f    // ID 63 - Control (SET)
     };
 }
-
-    float NoteMapper::GetFrequency(uint8_t NoteID) {
-
-        if (NoteID >= 64) {
-            return 0.0f;
-        }
-
-        return NOTE_FREQUENCIES[NoteID].Frequency;
+float Mini_Piano::Keypad::NoteMapper::GetFrequency(uint8_t NoteID) {
+    if (NoteID >= 64) {
+        return 0.0f;
     }
+    
+    return NOTE_FREQUENCIES[NoteID];
+}
 
-    bool SR_Keypad::NoteMapper::IsControl(uint8_t ButtonID) {
+bool Mini_Piano::Keypad::NoteMapper::IsControl(uint8_t ButtonID) {
 
-        return ButtonID == BTN_DOWN ||
-               ButtonID == BTN_UP ||
-               ButtonID == BTN_ENTER ||
-               ButtonID == BTN_SETTINGS;
+    return ButtonID == BTN_DOWN ||
+        ButtonID == BTN_UP ||
+        ButtonID == BTN_ENTER ||
+        ButtonID == BTN_SETTINGS;
 
-    }
+}

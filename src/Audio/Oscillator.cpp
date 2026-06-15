@@ -2,7 +2,7 @@
 
 //Uso del sistema DDS (Digital Direct Synthesis)
 
-SR_Keypad::Oscillator::Oscillator() {
+Mini_Piano::Audio::Oscillator::Oscillator() {
 
     _phase = 0;
 
@@ -15,7 +15,7 @@ SR_Keypad::Oscillator::Oscillator() {
     SetFrequency(_frequency);
 }
 
-void SR_Keypad::Oscillator::SetFrequency(float Frequency) {
+void Mini_Piano::Audio::Oscillator::SetFrequency(float Frequency) {
 
     _frequency = Frequency;
     
@@ -23,25 +23,22 @@ void SR_Keypad::Oscillator::SetFrequency(float Frequency) {
     _step = (uint32_t)((PHASE_MAX * _frequency) / _sampleRate); 
 }
 
-void SR_Keypad::Oscillator::SetSampleRate(uint32_t SampleRate) {
+void Mini_Piano::Audio::Oscillator::SetSampleRate(uint32_t SampleRate) {
 
     _sampleRate = SampleRate;
 
     SetFrequency(_frequency);
 }
 
-void SR_Keypad::Oscillator::SetWave(SR_Keypad::WaveType Type) {
+void Mini_Piano::Audio::Oscillator::SetWave(Mini_Piano::Audio::WaveType Type) {
 
     _waveTable = GetWaveTable(Type);
     _phase = 0;
 }
 
-uint16_t SR_Keypad::Oscillator::Interpolate() {
+uint16_t Mini_Piano::Audio::Oscillator::GenerateSample() {
 
-   
-}
-
-uint16_t SR_Keypad::Oscillator::GenerateSample() {
+    _phase += _step;
 
     uint8_t index = _phase >> 26;
 

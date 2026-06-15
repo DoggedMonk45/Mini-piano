@@ -24,7 +24,7 @@ namespace { //Namespace sin definición para hacerlo "Privado respecto al archiv
 
 }
 
-const uint16_t* SR_Keypad::GetWaveTable(WaveType type) {
+const uint16_t* Mini_Piano::Audio::GetWaveTable(Mini_Piano::Audio::WaveType type) {
 
     switch (type) {
 
