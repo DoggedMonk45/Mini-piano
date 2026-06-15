@@ -14,7 +14,7 @@ namespace Hardware {
     public:
 
         DAC(uint8_t Address = 0x60);
-        void Begin(uint32_t SampleRate = 22050);
+        void Begin(uint32_t SampleRate = 8000);
         void Write(uint16_t Value);
         uint32_t GetSampleRate();
     };

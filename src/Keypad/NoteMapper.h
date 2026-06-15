@@ -5,24 +5,21 @@
 
 namespace SR_Keypad {
 
-    struct NoteInfo {
-
-        const char* Name;
-        float Frequency;
-    };
+    // IDs de los botones de control
+    constexpr uint8_t BTN_DOWN = 39;
+    constexpr uint8_t BTN_UP = 47;
+    constexpr uint8_t BTN_ENTER = 55;
+    constexpr uint8_t BTN_SETTINGS = 63;
 
     class NoteMapper {
-    private:
-
-        static const NoteInfo NOTES[128];
-
     public:
 
-        static float GetFrequency(uint8_t NoteID);
+        static float GetFrequency(uint8_t ButtonID);
 
-        static const char* GetName(uint8_t NoteID);
+        static bool IsControl(uint8_t ButtonID);
+
     };
 
 }
 
-#endif 
+#endif // SR_KEYPAD_NOTEMAPPER_H

@@ -13,6 +13,8 @@ void Hardware::DAC::Begin(uint32_t SampleRate) {
 
     _sampleRate = SampleRate;
 
+    Wire.setClock(400000); // I2C fast mode
+
     Wire.begin();
 }
 

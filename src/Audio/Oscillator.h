@@ -16,7 +16,7 @@ namespace SR_Keypad {
         float _frequency;
         uint32_t _sampleRate;
 
-        const uint8_t* _waveTable;
+        const uint16_t* _waveTable;
 
     public:
 

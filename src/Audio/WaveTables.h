@@ -13,7 +13,7 @@ namespace SR_Keypad {
         SAW
     };
 
-    const uint8_t* GetWaveTable(WaveType Type);
+    const uint16_t* GetWaveTable(WaveType Type);
 
 }
 
